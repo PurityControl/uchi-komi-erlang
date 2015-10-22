@@ -1,0 +1,5 @@
+#+TITLE: Notes for first iteration of multiples
+
+Pleased with first solution of multiples.
+Used higher order function to filter if one of the numbers is a divisor.
+Then just sum the results.
