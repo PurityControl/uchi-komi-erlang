@@ -1,0 +1,4 @@
+#+TITLE: Notes for second iteration of multiples
+
+Slightly different approach with a list comprehension.
+Then just sum the results.
