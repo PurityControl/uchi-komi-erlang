@@ -1,1 +1,79 @@
 #+TITLE: Dai-nikyo (Group 2) - Testing
+
+* Eunit
+
+** Resources
+
+See eunits comprehensive [[http://erlang.org/doc/apps/eunit/chapter.html][online documentation]].
+
+** Quick list of what to do
+
+- Create a testing module (usually the module under test appended with _tests)
+  - This ensures your external tests get run if you ask Eunit to run tests on a module
+- add the following line after the module declaration
+  - ~-include_lib("eunit/include/eunit.hrl")~
+  - This create an exported function test()
+  - makes all functions ending in _test() automatically exported
+  - makes all the eunit macros available
+    - these macros include eunits assertions
+
+** Running Tests
+
+*** Interactively
+
+call the test function from your test module
+#+BEGIN_SRC erlang
+mymodule:test().
+#+END_SRC
+
+*** From the shell
+When you run the suite of tests from the shell either tell eunit to run
+the tests for the test module or if you have named your test module according to 
+the convention (modulename_tests.erl). Then assk eunit to run the tests on the module.
+
+So for a module called mymodule
+#+BEGIN_SRC shell
+# run just the tests in the test module with
+erl -noshell -eval "eunit:test(mymodule_tests, [verbose])" -s init stop
+
+# run all tests for the module whether part of the module file or an external test
+# file or both with
+erl -noshell -eval "eunit:test(mymodule, [verbose])" -s init stop
+#+END_SRC
+
+
+** Writing tests
+
+Any test function that triggers an exception will cause the test to fail.
+This means that you can write very simple test functions that will cause
+an exception should they not produce the correct result
+
+#+BEGIN_SRC erlang
+# check the function runs - most simple test possible
+reverse_test() -> lists:reverse([1,2,3]).
+
+# ensure correct output is returned
+# if these produced different output a badmatch exception would be raised.
+reverse_nil_test() -> [] = lists:reverse([]).
+reverse_one_test() -> [1] = lists:reverse([1]).
+reverse_two_test() -> [2,1] = lists:reverse([1,2]).
+#+END_SRC
+
+If tests require boolean operators use the assert macros
+
+*** Assert Macros
+
+The list below is the assert macros that eunit supports
+
+- assert(BoolExpr)
+- assertNot(BoolExpr)
+- assertMatch(GuardedPattern, Expr)
+- assertNotMatch(GuardedPattern, Expr)
+- assertEqual(Expect, Expr)
+- assertNotEqual(Unexpected, Expr)
+- assertException(ClassPattern, TermPattern, Expr)
+- assertError(TermPattern, Expr)
+- assertExit(TermPattern, Expr)
+- assertThrow(TermPattern, Expr)
+
+
