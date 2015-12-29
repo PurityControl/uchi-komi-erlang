@@ -1,0 +1,4 @@
+#+TITLE: Notes for first iteration of sum of even fibonaccis
+
+Instead of filtering a list of fibonaccis used an accumulator
+only adding even numbers as we increase until we reach the limit.
