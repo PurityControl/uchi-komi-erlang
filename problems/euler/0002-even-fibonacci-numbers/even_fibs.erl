@@ -1,7 +1,13 @@
+%% @author PurityControl
+%% @copyright PurityControl 2015
+%% @doc euler problem to total up even fibonacci numbers up to a limit.
+
 -module(even_fibs).
 
 -export([sum_to/1]).
 
+%% @doc sums even fibonacci numbers up to specified limit
+-spec(sum_to(integer()) -> integer()).
 sum_to(Limit) ->
     sum_to(Limit, [1, 1], 0).
 
