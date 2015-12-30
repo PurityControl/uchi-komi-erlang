@@ -1,0 +1,41 @@
+#+TITLE: Sieve of Eratosthenes
+
+The sieve of Eratosthenes calculates all primes up to a designated upper
+limit.
+
+* Algorithm
+
+The algorithm works by having a list of all the numbers from 2 up to the
+upper limit. Then take the following steps:
+
+- take the first number off the front of the list, this number is prime
+- remove all numbers that are multiples of the number just taken
+- repeat
+
+* Limitations
+
+The seive needs to store all of the unsieved numbers before sieving out
+numbers that are not primes. As a result this has memory implications.
+
+Because an upper limit must be set prior to commencment of the algorithm,
+on its own it is not sufficient to calculate the next prime after a number.
+
+* Optimizations
+
+- all even numbers greater than 2 are not prime. Start with the number 2
+  in the list of primes. Then make the list start with 3 and store only
+  odd numbers up to the limit.
+
+- because every factor of a number (N) that is below sqrt(N) must have a
+  corresponding number that is greater than the sqrt(N), and vice versa,
+  then the multiples step only needs to be carried out for values up to
+  the sqrt(N). Any numbers left in the sieve at that point are prime and
+  can just be appended to you current list of primes.
+
+- a further optimisation can be made over the 1st optimisation mentioned
+  above. After the primes 2 and 3, all primes must take the form 6k +/- 1.
+  This is because if a number is divided by 6 and leaves a remainder of
+  2, 4 or 6 then it must be even and not prime. If it leaves a remainder
+  of 3 then it must be divisible by 3 and not prime. This only leaves 5 and
+  6 as possible remainders, hence the form 6k +/- 1.
+
