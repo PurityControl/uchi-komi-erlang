@@ -1,7 +1,12 @@
+%% @author PurityControl
+%% @copyright 2015 PurityControl
+%% @doc Implementation of Sieve of Eratosthenes
 -module(eratosthenes).
 
 -export([primes_to/1]).
 
+%% @doc Given a limit returns all prime numbers up to that limit
+-spec(primes_to(integer()) -> list(integer())).
 primes_to(2) ->
     [2];
 primes_to(3) ->
