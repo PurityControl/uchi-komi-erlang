@@ -1,4 +1,4 @@
--module(factors_test).
+-module(factors_tests).
 
 -include_lib("eunit/include/eunit.hrl").
 
