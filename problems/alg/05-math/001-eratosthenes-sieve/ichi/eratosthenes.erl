@@ -14,6 +14,8 @@ primes_to(3) ->
 primes_to(Limit) when Limit > 2 ->
     primes_to(Limit, [3, 2], sieve(Limit)).
 
+primes_to(_limit, Primes, []) ->
+    lists:reverse(Primes);
 primes_to(Limit, Primes, [Sh | Sieve])  ->
     Filtered_sieve = lists:filter(fun(X) -> (X rem Sh) /= 0 end, Sieve),
     case (math:sqrt(Limit) =< Sh) of

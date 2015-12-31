@@ -2,7 +2,10 @@
 
 -include_lib("eunit/include/eunit.hrl").
 -import(eratosthenes, [primes_to/1]).
-
+ 
+primes_to_4_test() ->
+    ?assertEqual([2, 3], primes_to(4)).
+ 
 primes_to_20_test() ->
     ?assertEqual([2, 3, 5, 7, 11, 13, 17, 19], primes_to(20)).
 
